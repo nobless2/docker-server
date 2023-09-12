@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "conn": "docker exec -it php /bin/sh"
+  }
+}
