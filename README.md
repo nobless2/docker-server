@@ -1,7 +1,7 @@
 # simple docker server
 
 ## Run project
-docker-compose run nginx -d
+docker-compose up nginx -d
 #
 ### Build node
 docker-compose run --rm node npm install
