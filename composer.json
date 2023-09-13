@@ -1,5 +1,6 @@
 {
   "scripts": {
-    "conn": "docker exec -it php /bin/sh"
+    "conn": "docker exec -it php /bin/sh",
+    "exec": "docker exec -it php"
   }
 }
