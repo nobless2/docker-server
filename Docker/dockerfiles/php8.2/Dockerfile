@@ -13,5 +13,3 @@ RUN apk add --update linux-headers
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 RUN apk del -f .build-deps
-
-ADD ./config/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
