@@ -16,7 +16,8 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN docker-php-ext-install \
     pdo_mysql \
     gd \
-    zip
+    zip \
+    opcache
 
 # Set working directory
 WORKDIR /var/www/html
@@ -30,7 +31,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN set -eux; \
     composer clear-cache
 
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN chmod +x /docker-entrypoint.sh
 
