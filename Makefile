@@ -16,8 +16,8 @@ clean:
 	docker builder prune
 
 conn:
-	docker exec -it php-${PROJECT_NAME} /bin/sh
+	docker exec -it php-${APP_NAME} /bin/sh
 
 exec:
-	docker exec -it php-${PROJECT_NAME} $(c)
+	docker exec -it php-${APP_NAME} $(c)
 
