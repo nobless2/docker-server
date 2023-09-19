@@ -5,10 +5,6 @@ networks:
     name: network-${APP_NAME}
     driver: bridge
 
-volumes:
-  db-data: {}
-  redis-data: {}
-
 services:
   nginx:
     container_name: nginx-${APP_NAME}
@@ -21,6 +17,7 @@ services:
     depends_on:
       - php
       - db
+    restart: always
     networks:
       - mynetwork
   php:
@@ -33,7 +30,6 @@ services:
       - ./www:/var/www/html
     extra_hosts:
       - 'host.docker.internal:host-gateway'
-    command: ["webapp"]
     environment:
       PHP_IDE_CONFIG: serverName=Docker
     networks:
@@ -48,7 +44,7 @@ services:
       MYSQL_PASSWORD: "${DB_PASSWORD}"
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      - db-data:/var/lib/mysql
+      - ./data/db:/var/lib/mysql
     networks:
       - mynetwork
   redis:
@@ -57,13 +53,13 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - redis-data:/data
+      - ./data/redis:/data
     networks:
       - mynetwork
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
-  # SERVICE CONTAINERS
 
+  # SERVICE CONTAINERS
   node:
     image: 'node:alpine'
     working_dir: "/var/www/html"
