@@ -1,9 +1,14 @@
+#!/bin/bash
+while IFS='=' read -r key value; do
+  export "$key"="$value"
+done < .env
+
 nginxFile=config/nginx-proxy.conf
 indexFile=config/index.html
-rm $nginxFile
-rm
+[ -f $nginxFile ] && rm $nginxFile
+[ -f indexFile ] && rm indexFile
 
-for project_folder in ../sites/*_project; do
+for project_folder in $PROJECTS_PATH; do
   if [ -f "$project_folder"/.env ]; then
     APP_NAME=$(grep -Eo 'APP_NAME=[^;]+' "$project_folder"/.env | cut -d= -f2-)
     APP_PORT=$(grep -Eo 'APP_PORT=[^;]+' "$project_folder"/.env | cut -d= -f2-)
