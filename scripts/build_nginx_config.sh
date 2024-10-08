@@ -6,7 +6,7 @@ done < .env
 nginxFile=config/nginx-proxy.conf
 indexFile=config/index.html
 [ -f $nginxFile ] && rm $nginxFile
-[ -f indexFile ] && rm indexFile
+[ -f $indexFile ] && rm $indexFile
 
 for project_folder in $PROJECTS_PATH; do
   if [ -f "$project_folder"/.env ]; then

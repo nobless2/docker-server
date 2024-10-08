@@ -19,3 +19,10 @@ services:
       - /etc/hosts:/etc/hosts
       - ./config/nginx-proxy.conf:/etc/nginx/conf.d/nginx-proxy.conf
       - ./config/index.html:/usr/share/nginx/html/index.html
+  mailhog:
+    platform: linux/amd64
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - 8025:8025
+      - 1025:1025
