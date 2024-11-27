@@ -1,6 +1,6 @@
 .idea
 .DS_Store
-/config/*
-/data/*
+SERVER/config/*
+DB/data/*
 
 .env
